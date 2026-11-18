@@ -1,9 +1,19 @@
 {
     "private": true,
     "type": "module",
+    "engines": {
+        "node": ">=22 <23"
+    },
     "license": "AGPL-3.0-only",
     "scripts": {
         "dev": "vite",
+        "start": "node server/index.js",
+        "start:watch": "node --watch server/index.js",
+        "db:migrate": "node server/db/migrate.js",
+        "db:import:mysql": "node scripts/migrate-mysql-to-supabase.js",
+        "db:verify:mysql": "node scripts/migrate-mysql-to-supabase.js --verify",
+        "jobs:notifications": "node server/jobs/dispatch-booking-notifications.js",
+        "test:node": "node --test tests/node/*.test.js",
         "build": "vite build",
         "test": "vitest run",
         "test:watch": "vitest"
@@ -11,7 +21,13 @@
     "dependencies": {
         "@alpinejs/csp": "^3.15.9",
         "alpinejs": "^3.14.0",
-        "lucide": "^1.7.0"
+        "bcryptjs": "^3.0.3",
+        "fastify": "^5.12.8",
+        "lucide": "^1.7.0",
+        "mysql2": "^3.24.6",
+        "nodemailer": "^10.6.0",
+        "pg": "^8.23.1",
+        "rrule": "^2.8.1"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.0",
